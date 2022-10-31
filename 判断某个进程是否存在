@@ -4,7 +4,6 @@ PROC_NAME='xxl-job-admin'
 ProcNumber=`ps -ef |grep -w $PROC_NAME|grep -v grep|wc -l`
 if [ $ProcNumber -le 0 ];then
    echo "${PROC_NAME} is not run"
-   curl  "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=ffcf8d10-a813-4c0d-8cd7-30244a7338a7"  -H "Content-Type: application/json" -d  "{\"msgtype\": \"text\", \"text\": {\"content\": \"${PROC_NAME}挂掉了\"}}"
    nohup java -jar /opt/appsoftware/xxx-job/taskexecutor/xxl-job-admin-2.2.0-SNAPSHOT.jar  &
 else
    echo "${PROC_NAME} is  running.."
